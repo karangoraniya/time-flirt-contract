@@ -50,15 +50,14 @@ contract TimeFlirt is ERC721, ERC721URIStorage, Ownable, IERC721Receiver {
       /**
      * @notice Create a time-locked Flirt Capsule with specified details.
      * @param recipient Address of the recipient.
-     * @param uri URI of the capsule.
      * @param unlockTime Timestamp when the capsule can be unlocked.
      * @param contentURI URI for the additional content.
      */
-    function createFlirt(address recipient, string memory uri, uint256 unlockTime, string memory contentURI) public {
+    function createFlirt(address recipient, uint256 unlockTime, string memory contentURI) public {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(address(this), tokenId); // Mint the NFT to the contract itself
-        _setTokenURI(tokenId, uri);
+        _setTokenURI(tokenId, "https://roadtoweb3.infura-ipfs.io/ipfs/Qmer2ECS8sYrkuwL9uF5sYTwRsxqUMKfEuqY5YugPehiVb");
         _flirtCapsules[tokenId] = FlirtCapsule(tokenId, unlockTime, recipient, contentURI); // Store the time-lock information
     }
 
